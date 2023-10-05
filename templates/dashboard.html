@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Rewriter</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        h2 {
+        color: black;
+        padding: 10px;
+        margin-top: 0px;
+        }
+        div {
+        margit-top: 50%
+        }
+        body {
+        background: #A3A3A3;
+        margin: 0;
+        color: black;
+        }
+    </style>
+</head>
+<body>
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <ul class="messages">
+                {% for message in messages %}
+                    <li>{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    {% endwith %}
+
+    <div style="position: absolute; top: 10px; right: 10px;">
+        <button onclick="window.location.href='/logout'">Выход</button>
+    </div><br>
+
+    <form style="text-align: center;" action="" method="post"><br><br>
+<!--        <h2>Текстовые поля</h2>-->
+        <textarea name="prompt_text" id="prompt_text" maxlength="8000" rows="40" cols="75" placeholder="Инструкция">{% if prompt %}{{prompt}}{% endif %}</textarea>
+        <textarea name="input_text" id="input_text" maxlength="8000" rows="40" cols="75" placeholder="Исходный текст">{% if input_message %}{{input_message}}{% endif %}</textarea>
+        <textarea name="output_text" id="output_text" maxlength="8000" rows="40" cols="75" placeholder="Обработанный текст">{% if message %}{{message}}{% endif %}</textarea>
+        <br>
+        <p><input type="submit" value="Обработать"></p>
+    </form>
+
+<!--    <div align="center">-->
+<!--        <form action="" method="post">-->
+<!--            <br><br><textarea autofocus maxlength="8000" name="input_text" rows="15" cols="100" id="input_text">{% if input_message %}{{input_message}}{% endif %}</textarea><br>-->
+<!--            <p><input type="submit" value="Обработать"></p>-->
+<!--            <textarea name="output_text" id="output_text" maxlength="8000" rows="15" cols="100">{% if message %}{{message}}{% endif %}</textarea><br><br>-->
+<!--        </form>-->
+<!--    </div>-->
+<!--    <div align="center">-->
+<!--        <button onclick="window.location.href='/logout'">Выход</button>-->
+<!--    </div>-->
+</body>
+</html>
